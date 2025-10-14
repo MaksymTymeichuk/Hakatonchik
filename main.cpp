@@ -60,7 +60,8 @@ int menu(bool admin) {
     if (admin) {
         switch (choice) {
             case 1: add_student("", ""); break;
-            case 2: add_grade("", "", 0); break;
+
+                case 2: add_grade("", "", 0); break;
             case 3: table_potik(); break;
             case 4: table_stepdiati(); break;
             case 5: table_na_vidraxuvani(); break;
@@ -101,8 +102,12 @@ int main() {
                 {"Математичний аналіз", 100},
                 {"Фізкультура", 100}
             }}
-        }}
+        }},
+        {"ai_11", {}},
+        {"ai_12", {}},
+        {"ai_13", {}}
     };
+
 
     string user;
     cout << "Хто ви (студент або викладач)?: ";
