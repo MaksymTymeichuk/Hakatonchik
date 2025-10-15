@@ -4,6 +4,25 @@ using namespace std;
 #include <string>
 #include <vector>
 
+map<string, map<string, map<string, int>>> students = {
+    {"ai_14", {
+        {"Віктор Ярмак Валентинович", {
+            {"Дискретна математика", 70},
+            {"Математичний аналіз", 90},
+            {"Фізкультура", 80}
+        }},
+        {"Ягодзінська Олександра Сергіївна", {
+            {"Дискретна математика", 100},
+            {"Математичний аналіз", 100},
+            {"Фізкультура", 100}
+        }},
+        {"Тимейчук Максим Юрійович", {
+            {"Дискретна математика", 45},
+            {"Математичний аналіз", 30},
+            {"Фізкультура", 55}
+        }}
+    }}
+};
 
 void add_grade(map<string, map<string, map<string,vector <int> >>> &students,string group, string name, string subject, int grade)
     {       
