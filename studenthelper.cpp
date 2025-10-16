@@ -1,89 +1,3 @@
-// #include <algorithm>
-// #include <iostream>
-// #include <map>
-// #include <string>
-// #include <vector>
-// using namespace std;
-// #include <locale.h>
-
-// void avgRating ( vector<pair<string, double>> &rating) {
-//     vector<pair<string, double>> sortedRating = rating;
-//         if (rating.empty()) cout << "Рейтинг порожній!" << endl;
-        
-//        sort(sortedRating.begin(), sortedRating.end(),
-//          [](const auto& a, const auto& b) {
-//              return a.second > b.second; 
-//         });
-
-//         cout << "Рейтинг студентiв за середнiм балом: " << endl;
-//         for (int i = 0; i < rating.size(); i++) {
-//             cout << i + 1 << ". " << sortedRating[i].first << " - " << sortedRating[i].second << endl;
-//     }
-// }
-
-// int main(){
-//      //setlocale(LC_ALL, "uk_UA.UTF-8"); 
-//     // map<string, map<string, map<string, int>>> students = {
-//     //     {"ai_14", {
-//     //         {"Віктор Ярмак Валентинович", {
-//     //             {"Дискретна математика", 70},
-//     //             {"Математичний аналіз", 90},
-//     //             {"Фізкультура", 80}
-//     //         }},
-//     //         {"Ягодзінська Олександра Сергіївна", {
-//     //             {"Дискретна математика", 100},
-//     //             {"Математичний аналіз", 100},
-//     //             {"Фізкультура", 100}
-//     //         }},
-//     //         {"Тимейчук Максим Юрійович", {
-//     //             {"Дискретна математика", 100},
-//     //             {"Математичний аналіз", 100},
-//     //             {"Фізкультура", 100}
-//     //         }}
-//     //     }}
-//     // };
-
-//     vector<pair<string, double>> rating; 
-    
-//     // for (const auto& groupPair : students) {
-//     //     const string& groupName = groupPair.first; 
-//     //     const auto& studentMap = groupPair.second; 
-
-//     //     cout << "Група: " << groupName << endl;
-
-//     //     double groupSum = 0;
-//     //     int groupCount = 0;
-
-        
-//     //     for (const auto& studentPair : studentMap) {
-//     //         const string& studentName = studentPair.first;
-//     //         const auto& subjects = studentPair.second;     
-
-//     //         double studentSum = 0;
-//     //         for (const auto& subjectPair : subjects) {
-//     //             studentSum += subjectPair.second; 
-//     //         }
-
-//     //         double studentAvg = studentSum / subjects.size();
-//     //         cout << "  " << studentName << " — середній бал: " << studentAvg << endl;
-
-//             rating.push_back({studentName, studentAvg});
-
-//     //         groupSum += studentAvg;
-//     //         groupCount++;
-//     //     }
-
-//     //     double groupAvg = (groupCount > 0) ? groupSum / groupCount : 0;
-//     //     cout << "Середній бал групи " << groupName << ": " << groupAvg << "\n\n";
-//     // }
-
-    
-//    avgRating(rating);
-
-//     return 0;
-
-// }
-
 #include <iostream>
 #include <map>
 #include <string>
@@ -91,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+
+using RatingVector = vector<pair<string, double>>;
 
 string add_student(string name, string group) {
     return "";
@@ -100,22 +16,9 @@ string add_grade(string name, string group, int grade) {
     return "";
 }
 
-int table_potik() {
-    return 0;
-}
-
-int table_stepdiati() {
-    return 0;
-}
-
-int table_na_vidraxuvani() {
-    return 0;
-}
-
-int avrg_table() {
-     vector<pair<string, double>> rating; 
-    
-    for (const auto& groupPair : students) {
+RatingVector avrg_grade(const map<string, map<string, map<string, int>>> students) {
+    RatingVector rating;
+      for (const auto& groupPair : students) {
         const string& groupName = groupPair.first; 
         const auto& studentMap = groupPair.second; 
 
@@ -138,29 +41,41 @@ int avrg_table() {
             cout << "  " << studentName << " — середній бал: " << studentAvg << endl;
 
             rating.push_back({studentName, studentAvg});
-
             groupSum += studentAvg;
             groupCount++;
         }
-
-        double groupAvg = (groupCount > 0) ? groupSum / groupCount : 0;
-        cout << "Середній бал групи " << groupName << ": " << groupAvg << "\n\n";
+        // double groupAvg = (groupCount > 0) ? groupSum / groupCount : 0;
+        // cout << "Середній бал групи " << groupName << ": " << groupAvg << "\n\n";
     }
 
-     vector<pair<string, double>> sortedRating = rating;
-         if (rating.empty()) cout << "Рейтинг порожній!" << endl;
-        
-        sort(sortedRating.begin(), sortedRating.end(),
-          [](const auto& a, const auto& b) {
-              return a.second > b.second; 
-         });
+    return rating;
+}
 
-         cout << "Рейтинг студентiв за середнiм балом: " << endl;
-         for (int i = 0; i < rating.size(); i++) {
-             cout << i + 1 << ". " << sortedRating[i].first << " - " << sortedRating[i].second << endl;
-     }
+int table_potik() {
+    return 0;
+}
 
-    
+int table_stepdiati() {
+    return 0;
+}
+
+int table_na_vidraxuvani() {
+    return 0;
+}
+
+int avrg_table(const RatingVector& rating) {
+        if (rating.empty()) cout << "Рейтинг порожній!" << endl;
+         RatingVector sortedRating = rating;
+       sort(sortedRating.begin(), sortedRating.end(),
+         [](const auto& a, const auto& b) {
+             return a.second > b.second; 
+        });
+
+        cout << "Рейтинг студентiв за середнiм балом: " << endl;
+        for (int i = 0; i < rating.size(); i++) {
+            cout << i + 1 << ". " << sortedRating[i].first << " - " << sortedRating[i].second << endl;
+    }
+
     return 0;
 }
 
@@ -168,7 +83,8 @@ int table_vidminik() {
     return 0;
 }
 
-int menu(bool admin) {
+
+int menu(const bool admin, const map<string, map<string, map<string, int>>>& students) {
     int choice;
 
     if (admin) {
@@ -192,6 +108,12 @@ int menu(bool admin) {
     cout << "Ваш вибір: ";
     cin >> choice;
 
+    if ((admin && choice == 6) || (!admin && choice == 4)) {
+        RatingVector studentRating = avrg_grade(students);
+        avrg_table(studentRating);
+        return choice;
+    }
+
     if (admin) {
         switch (choice) {
             case 1: add_student("", ""); break;
@@ -200,7 +122,7 @@ int menu(bool admin) {
             case 3: table_potik(); break;
             case 4: table_stepdiati(); break;
             case 5: table_na_vidraxuvani(); break;
-            case 6: avrg_table(); break;
+            // case 6: avrg_table(); break;
             case 7: table_vidminik(); break;
         }
     } else {
@@ -208,7 +130,7 @@ int menu(bool admin) {
             case 1: table_potik(); break;
             case 2: table_stepdiati(); break;
             case 3: table_na_vidraxuvani(); break;
-            case 4: avrg_table(); break;
+            // case 4: avrg_table(); break;
             case 5: table_vidminik(); break;
         }
     }
@@ -254,7 +176,7 @@ int main() {
 
     int choice = -1;
     while (choice != 0) {
-        choice = menu(isAdmin);
+        choice = menu(isAdmin, students);
     }
 
     cout << "До побачення!\n";
