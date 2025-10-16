@@ -33,7 +33,11 @@ int table_vidminik() {
     return 0;
 }
 
-int menu(bool admin) {
+int avrg_grade() {
+    return 0;
+}
+
+int menu(const bool admin, const map<string, map<string, map<string, int>>>& students) {
     int choice;
 
     if (admin) {
@@ -119,7 +123,7 @@ int main() {
 
     int choice = -1;
     while (choice != 0) {
-        choice = menu(isAdmin);
+        choice = menu(isAdmin, students);
     }
 
     cout << "До побачення!\n";
